@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAC Onsite Daily Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        label, input, select, textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        textarea {
+            resize: none;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SAC Onsite Daily Report</h1>
+    </header>
+    <form method="POST">
+        {% for form in forms %}
+            <div class="form-container">
+                <h2>{{ form.meta.prefix|replace('_', ' ').capitalize() }}</h2>
+                {{ form.csrf_token }}
+                {{ form.site_location.label }} {{ form.site_location }}
+                {{ form.pod_id.label }} {{ form.pod_id }}
+                {{ form.pod_number.label }} {{ form.pod_number }}
+                {{ form.pod_usage.label }} {{ form.pod_usage }}
+                {{ form.generator_status.label }} {{ form.generator_status }}
+                {{ form.cleaned_male.label }} {{ form.cleaned_male }}
+                {{ form.cleaned_female.label }} {{ form.cleaned_female }}
+                {{ form.diesel_gauge.label }} {{ form.diesel_gauge }}
+                {{ form.oil_gauge.label }} {{ form.oil_gauge }}
+                {{ form.storage.label }} {{ form.storage }}
+                {{ form.comments.label }} {{ form.comments }}
+            </div>
+        {% endfor %}
+        <div class="button-container">
+            <button type="submit">Send Report</button>
+        </div>
+    </form>
+</body>
+</html>

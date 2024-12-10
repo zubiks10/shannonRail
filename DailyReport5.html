@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAC Onsite Daily Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .frame {
+            border: 2px solid #1c9224;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            text-align: center;
+        }
+        .frame img {
+            height: 80px;
+            width: auto;
+            display: block;
+            margin: 0 auto 10px;
+        }
+        .frame h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #1c9224;
+        }
+        .frame p {
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        .report-info {
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #1c9224;
+            color: #fff;
+            border-radius: 8px;
+            width: 70%;
+            max-width: 500px;
+            text-align: center;
+        }
+        .form-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            width: 70%;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        select, input[type="text"], input[type="number"], textarea, input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensures consistent padding and sizing */
+        }
+        textarea {
+            resize: none;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .send-button, .refresh-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #1c9224;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .send-button:hover, .refresh-button:hover {
+            background-color: #0f731a;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="frame">
+            <img src="Picture1.png" alt="Shannon Logo">
+            <h1>SAC Daily Report(SAC)</h1>
+            <p><span id="frame-date"></span> | <span id="frame-time"></span></p>
+        </div>
+    </header>
+    <section class="report-info">
+        <p><strong>Report Date:</strong> <span id="report-date"></span></p>
+        <p><strong>Report Time:</strong> <span id="report-time"></span></p>
+    </section>
+    <form id="report-form">
+        <!-- SAC Name Section -->
+        <div class="form-container">
+            <h2>SAC User Information</h2>
+            <label for="sac-first-name">First Name:</label>
+            <input type="text" id="sac-first-name" name="sac-first-name" required>
+
+            <label for="sac-last-name">Last Name:</label>
+            <input type="text" id="sac-last-name" name="sac-last-name" required>
+        </div>
+        
+        <div id="pods-container">
+            <!-- POD 1 -->
+            <div class="form-container">
+                <h2>Welfare POD 1</h2>
+                <label for="site-location1">Site Location:</label>
+                <input type="text" id="site-location1" name="site-location1" required>
+                
+                <label for="pod-id1">Welfare POD ID:</label>
+                <select id="pod-id1" name="pod-id1">
+                    <option value="SRTB5102">SRTB5102</option>
+                    <option value="E71246">E71246</option>
+                    <option value="E71264">E71264</option>
+                    <option value="E71265">E71265</option>
+                    <option value="E71278">E71278</option>
+                    <option value="E71268">E71268</option>
+                    <option value="SRTB5109">SRTB5109</option>
+                </select>
+                
+                <label for="pod-number1">Welfare POD Number:</label>
+                <select id="pod-number1" name="pod-number1">
+                    <option value="Pod1">Pod1</option>
+                    <option value="Pod2">Pod2</option>
+                    <option value="Pod3">Pod3</option>
+                    <option value="Pod4">Pod4</option>
+                    <option value="Pod5">Pod5</option>
+                    <option value="Pod6">Pod6</option>
+                    <option value="1+2">1+2</option>                   
+                </select>
+                
+                <label for="pod-usage1">Pod Usage:</label>
+                <select id="pod-usage1" name="pod-usage1">
+                    <option value="Sac Cabin">Sac Cabin</option>
+                    <option value="ES Cabin">ES Cabin</option>
+                    <option value="Resource Canteen1">Resource Canteen1</option>
+                    <option value="Resource Canteen2">Resource Canteen2</option>
+                    <option value="Resource Canteen3">Resource Canteen3</option>
+                    <option value="Lavatory Facilities">Lavatory Facilities</option> 
+                    <option value="Lavatory Facilities 1PLUS2">Lavatory Facilities 1PLUS2</option>
+                </select>
+                
+                <label for="generator-status1">Generator Status:</label>
+                <select id="generator-status1" name="generator-status1">
+                    <option value="Functional">Functional</option>
+                    <option value="Non Functional">Non Functional</option>
+                </select>
+                
+                <label for="cleaned-Toilets1">Cleaned Toilets:</label>
+                <select id="cleaned-Toilets1" name="cleaned-Toilets1">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                
+                <label for="diesel-gauge1">Diesel Gauge Status (%):</label>
+                <input type="number" id="diesel-gauge1" name="diesel-gauge1" min="0" max="100" required>
+                
+                <label for="oil-gauge1">Oil Gauge Status (%):</label>
+                <input type="number" id="oil-gauge1" name="oil-gauge1" min="0" max="100" required>
+                
+                <label for="storage1">Used as Storage:</label>
+                <select id="storage1" name="storage1">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                
+                <label for="comments1">Comments:</label>
+                <textarea id="comments1" name="comments1" rows="3"></textarea>
+                
+                <label for="attachments1">Attach Documents:</label>
+                <input type="file" id="attachments1" name="attachments1" multiple accept=".pdf,.doc,.docx,.jpg,.png,.xls,.xlsx">
+            </div>
+            <hr style="margin: 20px 0; border: 1px solid #ccc;"> <!-- Line between PODs -->
+            <!-- The rest of the PODs will be dynamically generated with lines between them -->
+        </div>
+    </form>
+    <div class="button-container">
+        <button type="button" class="refresh-button" onclick="refreshPage()">Refresh</button>
+        <button type="button" class="send-button" onclick="sendReport()">Send Report</button>
+    </div>
+    <script>
+        // Populate date and time
+        const now = new Date();
+        document.getElementById('report-date').textContent = now.toLocaleDateString();
+        document.getElementById('report-time').textContent = now.toLocaleTimeString();
+        document.getElementById('frame-date').textContent = now.toLocaleDateString();
+        document.getElementById('frame-time').textContent = now.toLocaleTimeString();
+
+        // Duplicate form for 5 PODs
+        const podsContainer = document.getElementById('pods-container');
+        for (let i = 2; i <= 6; i++) {
+            const podTemplate = podsContainer.firstElementChild.cloneNode(true);
+            podTemplate.querySelector('h2').textContent = `Welfare POD ${i}`;
+            podTemplate.querySelectorAll('label, select, input, textarea').forEach(elem => {
+                if (elem.id) elem.id = elem.id.replace('1', i);
+                if (elem.name) elem.name = elem.name.replace('1', i);
+            });
+            podsContainer.appendChild(podTemplate);
+
+            // Add line between PODs except after the last one
+            if (i < 6) {
+                const hr = document.createElement('hr');
+                hr.style.margin = '20px 0';
+                hr.style.border = '1px solid #ccc';
+                podsContainer.appendChild(hr);
+            }
+        }
+
+        // Refresh page function
+        function refreshPage() {
+            location.reload();
+        }
+
+        // Send report function
+        function sendReport() {
+            const formData = new FormData(document.getElementById('report-form'));
+            let emailBody = 'Daily SAC Report:\n\n';
+            
+            for (let [key, value] of formData.entries()) {
+                emailBody += `${key}: ${value}\n`;
+            }
+
+            const mailtoLink = `mailto:zzubiks@gmail.com?subject=Daily SAC Report&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoLink;
+        }
+    </script>
+</body>
+</html>

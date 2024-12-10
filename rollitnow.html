@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottery Dice Roller</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .number-container {
+            margin-top: 20px;
+        }
+        .number {
+            display: inline-block;
+            margin: 10px;
+            font-size: 24px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generate Random Numbers with Dice Rolling</h1>
+    <button onclick="generateNumbers()">Generate Numbers</button>
+    <div class="number-container">
+        <div id="num1" class="number">0</div>
+        <div id="num2" class="number">0</div>
+        <div id="num3" class="number">0</div>
+        <div id="num4" class="number">0</div>
+        <div id="num5" class="number">0</div>
+        <div id="num6" class="number">0</div>
+    </div>
+    <script>
+        function generateNumbers() {
+            const numbers = [];
+            const numberElements = [
+                document.getElementById('num1'),
+                document.getElementById('num2'),
+                document.getElementById('num3'),
+                document.getElementById('num4'),
+                document.getElementById('num5'),
+                document.getElementById('num6'),
+            ];
+
+            let rollCount = 0; // Number of times to simulate dice rolling
+
+            // Simulate dice rolling effect
+            const rollInterval = setInterval(() => {
+                rollCount++;
+                numberElements.forEach(element => {
+                    element.textContent = Math.floor(Math.random() * 6) + 1; // Show dice roll (1-6)
+                });
+
+                // Stop rolling after a few iterations
+                if (rollCount > 10) {
+                    clearInterval(rollInterval);
+
+                    // Set final random numbers (0-49)
+                    numberElements.forEach((element, index) => {
+                        const randomNumber = Math.floor(Math.random() * 50);
+                        numbers[index] = randomNumber;
+                        element.textContent = randomNumber;
+                    });
+                }
+            }, 100); // Update every 100ms to simulate dice rolling
+        }
+    </script>
+</body>
+</html>
